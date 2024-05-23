@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
-
+    Welcome to the Recommendation System
 </header>
 
 <main>
@@ -25,15 +25,12 @@
         </div>
     </section>
 
-    <section class="chatbot">
-        <h2>Chatbot</h2>
-        <div class="chat-window">
-            <!-- Chat messages will be displayed here -->
+    <section class="search-window">
+        <div class="search-container">
+            <label for="search" class="search-label">Search:</label>
+            <input type="text" id="search" class="search-input">
+            <button class="search-button">Search</button>
         </div>
-        <form id="chatForm" action="#" method="post">
-            <input type="text" id="chatInput" placeholder="Type your message...">
-            <button type="submit">Send</button>
-        </form>
     </section>
 </main>
 
@@ -41,9 +38,89 @@
     <p>&copy; 2024 Your Website. All rights reserved.</p>
 </footer>
 
-<!-- JavaScript for chatbot functionality -->
-<script>
-    // Your chatbot JavaScript code will go here
+<script >
+   document.addEventListener('DOMContentLoaded', () => {
+    const searchButton = document.querySelector('.search-button');
+    const searchInput = document.querySelector('.search-input');
+    const recommendations = [
+        'The Complete Web Developer Course 2.0 by Udemy',
+        'HTML, CSS, and Javascript for Web Developers by Coursera (Johns Hopkins University)',
+        'The Web Developer Bootcamp by Udemy',
+        'JavaScript: Understanding the Weird Parts by Udemy',
+        'Modern React with Redux by Udemy',
+        'Data Science Specialization by Coursera (Johns Hopkins University)',
+        'Python for Data Science and Machine Learning Bootcamp by Udemy',
+        'Machine Learning by Coursera (Stanford University)',
+        'Deep Learning Specialization by Coursera (deeplearning.ai)',
+        'Applied Data Science with Python by Coursera (University of Michigan)',
+        'The Complete iOS App Development Bootcamp by Udemy',
+        'Android App Development for Beginners by Udacity',
+        'iOS 13 & Swift 5 - The Complete iOS App Development Bootcamp by Udemy',
+        'Developing Android Apps with Kotlin by Udacity',
+        'Flutter & Dart - The Complete Guide by Udemy',
+        'AI For Everyone by Coursera (deeplearning.ai)',
+        'Artificial Intelligence: A Guide for Thinking Humans by Udemy',
+        'Artificial Intelligence: Principles and Techniques by Coursera (Stanford University)',
+        'Practical Deep Learning for Coders by fast.ai',
+        'Reinforcement Learning by Coursera (University of Alberta)',
+        'Cybersecurity Specialization by Coursera (University of Maryland)',
+        'The Complete Cyber Security Course by Udemy',
+        'Cybersecurity Fundamentals by edX (RIT)',
+        'Introduction to Cyber Security Specialization by Coursera (NYU)',
+        'Computer Security: Principles and Practice by Udacity',
+        'AWS Certified Solutions Architect by Udemy',
+        'Google Cloud Platform Fundamentals: Core Infrastructure by Coursera (Google Cloud)',
+        'Cloud Computing Specialization by Coursera (University of Illinois)',
+        'Microsoft Azure Fundamentals by Pluralsight',
+        'Architecting with Google Compute Engine by Coursera (Google Cloud)',
+        'Software Development Lifecycle by Coursera (University of Minnesota)',
+        'Software Engineering: Introduction by edX (UBCx)',
+        'Agile Software Development by Coursera (University of Minnesota)',
+        'Version Control with Git by Coursera (Atlassian)',
+        'Design Patterns in Java by Udemy',
+        'The DevOps Handbook by Udemy',
+        'Continuous Delivery & DevOps by Coursera (University of Virginia)',
+        'Learn DevOps: The Complete Kubernetes Course by Udemy',
+        'DevOps Foundations by LinkedIn Learning',
+        'Docker and Kubernetes: The Complete Guide by Udemy'
+    ];
+
+    searchButton.addEventListener('click', () => {
+        const query = searchInput.value.toLowerCase();
+        const results = recommendations.filter(course => course.toLowerCase().includes(query));
+        
+        displayResults(results);
+    });
+
+    function displayResults(results) {
+        const searchWindow = document.querySelector('.search-window');
+        let resultsContainer = document.querySelector('.results-container');
+
+        if (!resultsContainer) {
+            resultsContainer = document.createElement('div');
+            resultsContainer.classList.add('results-container');
+            searchWindow.appendChild(resultsContainer);
+        } else {
+            resultsContainer.innerHTML = '';
+        }
+
+        if (results.length === 0) {
+            resultsContainer.textContent = 'No recommendations found.';
+        } else {
+            const ul = document.createElement('ul');
+            results.forEach(course => {
+                const li = document.createElement('li');
+                li.textContent = course;
+                ul.appendChild(li);
+            });
+            resultsContainer.appendChild(ul);
+        }
+    }
+});
+
+
+
+
 </script>
 
 </body>

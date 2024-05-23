@@ -146,19 +146,10 @@ button[type="submit"]:hover {
 
 /* Styling the user profile */
 .user-profile {
-    float: left; /* Float the user profile to the left */
-    width: 250px; /* Set width of user profile */
-    background-color: #f8f8f8; /* Change background color to a lighter shade */
+    background-color: white;
     padding: 20px;
-    border-radius: 10px; /* Increase border radius for a softer look */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Add slight shadow for depth */
-    margin-right: 20px; /* Add margin between user profile and chatbot */
-}
-
-.user-profile h2 {
-    text-align: center;
     margin-bottom: 20px;
-    color: #333; /* Change header text color to a darker shade */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .profile-info {
@@ -167,64 +158,65 @@ button[type="submit"]:hover {
 }
 
 .profile-info img {
-    width: 100px; /* Adjust avatar size */
-    border-radius: 50%; /* Make the user avatar round */
+    border-radius: 50%;
     margin-right: 20px;
 }
 
-.user-details {
-    color: #666; /* Change text color for user details */
-}
-
-/* Styling the chatbot */
-.chatbot {
-    float: left; /* Float the chatbot to the left */
-    width: calc(100% - 290px); /* Set width of chatbot */
+.search-window {
+    background-color: white;
     padding: 20px;
-    border-radius: 10px; /* Increase border radius for a softer look */
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Add slight shadow for depth */
-    background-color: #fff; /* Change background color to white */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.chatbot h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333; /* Change header text color to a darker shade */
+.search-container {
+    display: flex;
+    align-items: center;
 }
 
-.chat-window {
-    height: 300px; /* Increase chat window height */
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
+.search-label {
+    margin-right: 10px;
 }
 
-#chatInput {
-    width: calc(100% - 80px); /* Adjust input width */
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.search-input {
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
 }
 
-button[type="submit"] {
-    width: 70px; /* Adjust button width */
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
+.search-button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
-    background-color: #555;
+.search-button:hover {
+    background-color: #0056b3;
 }
 
+.results-container {
+    margin-top: 20px;
+}
+
+.results-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.results-container li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+}
 
 footer {
+    background-color: #007BFF;
+    color: white;
     text-align: center;
-    padding: 20px 0;
-    background-color: #333;
-    color: #fff;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
