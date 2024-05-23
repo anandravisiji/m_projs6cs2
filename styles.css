@@ -7,8 +7,8 @@
 
 /* Styling the body */
 body {
+    background-color: #f0f0f0;
     font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
     color: #333;
 }
 
@@ -51,23 +51,34 @@ main {
 
 
 /* Styling the login and sign-up containers */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .login-container,
 .signup-container {
     background-color: #555;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: center;
     cursor: pointer;
     color: #fff;
-    transition: background-color 0.3s ease;
-    margin: 10px 0; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin: 10px 0;
+    width: 200px;
+    border: 2px solid #444;
 }
 
 .login-container:hover,
 .signup-container:hover {
-    background-color: #0056b3;
+    background-color: #666;
+    transform: scale(1.05);
 }
+
+
 
 .login-container h2,
 .signup-container h2 {
