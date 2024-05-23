@@ -146,31 +146,57 @@ button[type="submit"]:hover {
 
 /* Styling the user profile */
 .user-profile {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #e0e0e0;
+    width: 80%;
+    padding: 10px;
     border-radius: 8px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px; /* Thinner height */
 }
 
-.user-profile h2 {
-    margin-top: 0;
+.user-profile {
+    background-color: #fff;
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 120px; /* Thinner height */
+    border: 1px solid #e1e4e8;
 }
 
 .profile-info {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .profile-info img {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     margin-right: 20px;
+    border: 1px solid #e1e4e8;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .user-details p {
-    margin: 5px 0;
+    margin: 2px 0;
+    font-size: 1em;
+    color: #586069;
 }
 
 .search-window {
