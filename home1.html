@@ -5,67 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em;
-        }
-        main {
-            padding: 1em;
-        }
-        .user-profile, .search-window {
-            margin-bottom: 2em;
-        }
-        .profile-info {
-            display: flex;
-            align-items: center;
-        }
-        .profile-info img {
-            border-radius: 50%;
-            margin-right: 1em;
-        }
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
-        .search-container .search-label {
-            margin-right: 0.5em;
-        }
-        .results-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1em;
-        }
-        .course-tile {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 1em;
-            width: calc(33.333% - 2em);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .course-tile h3 {
-            margin-top: 0;
-        }
-        .course-tile a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        .course-tile a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            margin-top: 2em;
-        }
-    </style>
 </head>
 <body>
 
@@ -76,7 +15,7 @@
 <main>
     <section class="user-profile">
         <div class="profile-info">
-            <img src="user-avatar.png" alt="User Avatar">
+            <img src="user_avatar.png" alt="User Avatar">
             <div class="user-details">
                 <p>Name: TESTER</p>
                 <p>Email: tester123@example.com</p>
@@ -94,102 +33,88 @@
     </section>
 </main>
 
+<section class="results-container"></section>
+
+<section class="feedback-container">
+    <h2>Feedback</h2>
+    <textarea id="feedback" rows="4" placeholder="Enter your feedback here..."></textarea>
+    <button class="submit-feedback">Submit Feedback</button>
+</section>
+
 <footer>
     <p>&copy; 2024 Your Website. All rights reserved.</p>
 </footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const searchButton = document.querySelector('.search-button');
         const searchInput = document.querySelector('.search-input');
         const recommendations = [
-            { name: 'The Complete Web Developer Course 2.0 by Udemy', link: 'https://www.udemy.com/course/complete-web-developer-course/', rate: '4.7' },
-            { name: 'HTML, CSS, and Javascript for Web Developers by Coursera (Johns Hopkins University)', link: 'https://www.coursera.org/learn/html-css-javascript-for-web-developers', rate: '4.8' },
-            { name: 'The Web Developer Bootcamp by Udemy', link: 'https://www.udemy.com/course/the-web-developer-bootcamp/', rate: '4.7' },
-            { name: 'JavaScript: Understanding the Weird Parts by Udemy', link: 'https://www.udemy.com/course/understand-javascript/', rate: '4.7' },
-            { name: 'Modern React with Redux by Udemy', link: 'https://www.udemy.com/course/react-redux/', rate: '4.8' },
-            { name: 'Data Science Specialization by Coursera (Johns Hopkins University)', link: 'https://www.coursera.org/specializations/jhu-data-science', rate: '4.5' },
-            { name: 'Python for Data Science and Machine Learning Bootcamp by Udemy', link: 'https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/', rate: '4.6' },
-            { name: 'Machine Learning by Coursera (Stanford University)', link: 'https://www.coursera.org/learn/machine-learning', rate: '4.9' },
-            { name: 'Deep Learning Specialization by Coursera (deeplearning.ai)', link: 'https://www.coursera.org/specializations/deep-learning', rate: '4.8' },
-            { name: 'Applied Data Science with Python by Coursera (University of Michigan)', link: 'https://www.coursera.org/specializations/data-science-python', rate: '4.5' },
-            { name: 'The Complete iOS App Development Bootcamp by Udemy', link: 'https://www.udemy.com/course/ios13-app-development-bootcamp/', rate: '4.8' },
-            { name: 'Android App Development for Beginners by Udacity', link: 'https://www.udacity.com/course/android-basics-nanodegree-by-google--nd803', rate: '4.6' },
-            { name: 'iOS 13 & Swift 5 - The Complete iOS App Development Bootcamp by Udemy', link: 'https://www.udemy.com/course/ios-13-app-development-bootcamp/', rate: '4.8' },
-            { name: 'Developing Android Apps with Kotlin by Udacity', link: 'https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012', rate: '4.6' },
-            { name: 'Flutter & Dart - The Complete Guide by Udemy', link: 'https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/', rate: '4.7' },
-            { name: 'AI For Everyone by Coursera (deeplearning.ai)', link: 'https://www.coursera.org/learn/ai-for-everyone', rate: '4.8' },
-            { name: 'Artificial Intelligence: A Guide for Thinking Humans by Udemy', link: 'https://www.udemy.com/course/artificial-intelligence-a-guide-for-thinking-humans/', rate: '4.4' },
-            { name: 'Artificial Intelligence: Principles and Techniques by Coursera (Stanford University)', link: 'https://www.coursera.org/learn/artificial-intelligence', rate: '4.7' },
-            { name: 'Practical Deep Learning for Coders by fast.ai', link: 'https://course.fast.ai/', rate: '4.8' },
-            { name: 'Reinforcement Learning by Coursera (University of Alberta)', link: 'https://www.coursera.org/specializations/reinforcement-learning', rate: '4.7' },
-            { name: 'Cybersecurity Specialization by Coursera (University of Maryland)', link: 'https://www.coursera.org/specializations/cyber-security', rate: '4.6' },
-            { name: 'The Complete Cyber Security Course by Udemy', link: 'https://www.udemy.com/course/the-complete-cyber-security-course/', rate: '4.6' },
-            { name: 'Cybersecurity Fundamentals by edX (RIT)', link: 'https://www.edx.org/course/cybersecurity-fundamentals', rate: '4.5' },
-            { name: 'Introduction to Cyber Security Specialization by Coursera (NYU)', link: 'https://www.coursera.org/specializations/intro-cyber-security', rate: '4.6' },
-            { name: 'Computer Security: Principles and Practice by Udacity', link: 'https://www.udacity.com/course/computer-security--cs603', rate: '4.5' },
-            { name: 'AWS Certified Solutions Architect by Udemy', link: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate/', rate: '4.7' },
-            { name: 'Google Cloud Platform Fundamentals: Core Infrastructure by Coursera (Google Cloud)', link: 'https://www.coursera.org/learn/gcp-fundamentals', rate: '4.7' },
-            { name: 'Cloud Computing Specialization by Coursera (University of Illinois)', link: 'https://www.coursera.org/specializations/cloud-computing', rate: '4.6' },
-            { name: 'Microsoft Azure Fundamentals by Pluralsight', link: 'https://www.pluralsight.com/courses/azure-fundamentals', rate: '4.5' },
-            { name: 'Architecting with Google Compute Engine by Coursera (Google Cloud)', link: 'https://www.coursera.org/specializations/gcp-architecture', rate: '4.7' },
-            { name: 'Software Development Lifecycle by Coursera (University of Minnesota)', link: 'https://www.coursera.org/specializations/software-development-lifecycle', rate: '4.5' },
-            { name: 'Software Engineering: Introduction by edX (UBCx)', link: 'https://www.edx.org/course/software-engineering-introduction', rate: '4.5' },
-            { name: 'Agile Software Development by Coursera (University of Minnesota)', link: 'https://www.coursera.org/specializations/agile-software-development', rate: '4.6' },
-            { name: 'Version Control with Git by Coursera (Atlassian)', link: 'https://www.coursera.org/learn/version-control-with-git', rate: '4.7' },
-            { name: 'Design Patterns in Java by Udemy', link: 'https://www.udemy.com/course/design-patterns-java/', rate: '4.6' },
-            { name: 'The DevOps Handbook by Udemy', link: 'https://www.udemy.com/course/the-devops-handbook/', rate: '4.5' },
-            { name: 'Continuous Delivery & DevOps by Coursera (University of Virginia)', link: 'https://www.coursera.org/specializations/continuous-delivery-devops', rate: '4.6' },
-            { name: 'Learn DevOps: The Complete Kubernetes Course by Udemy', link: 'https://www.udemy.com/course/learn-devops-the-complete-kubernetes-course/', rate: '4.7' },
-            { name: 'DevOps Foundations by LinkedIn Learning', link: 'https://www.linkedin.com/learning/devops-foundations/', rate: '4.6' },
-            { name: 'Docker and Kubernetes: The Complete Guide by Udemy', link: 'https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/', rate: '4.7' }
+            { name: 'The Complete Web Developer Course 2.0 by Udemy', link: 'https://www.udemy.com/course/complete-web-developer-course/', rate: '4.7', description: 'Learn web development from scratch with this comprehensive course.' },
+            { name: 'HTML, CSS, and Javascript for Web Developers by Coursera (Johns Hopkins University)', link: 'https://www.coursera.org/learn/html-css-javascript-for-web-developers', rate: '4.8', description: 'Master the basics of HTML, CSS, and JavaScript with this course.' },
+            { name: 'The Web Developer Bootcamp by Udemy', link: 'https://www.udemy.com/course/the-web-developer-bootcamp/', rate: '4.7', description: 'A comprehensive course on web development using the latest technologies.' },
+            { name: 'JavaScript: Understanding the Weird Parts by Udemy', link: 'https://www.udemy.com/course/understand-javascript/', rate: '4.7', description: 'Deep dive into the core mechanisms of JavaScript.' },
+            { name: 'Modern React with Redux by Udemy', link: 'https://www.udemy.com/course/react-redux/', rate: '4.8', description: 'Learn to build dynamic web applications using React and Redux.' },
+            { name: 'Data Science Specialization by Coursera (Johns Hopkins University)', link: 'https://www.coursera.org/specializations/jhu-data-science', rate: '4.5', description: 'Get started with data science with this in-depth specialization.' },
+            { name: 'Python for Data Science and Machine Learning Bootcamp by Udemy', link: 'https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/', rate: '4.6', description: 'Learn Python for data science and machine learning with this bootcamp.' },
+            { name: 'Machine Learning by Coursera (Stanford University)', link: 'https://www.coursera.org/learn/machine-learning', rate: '4.9', description: 'Stanford’s popular course on machine learning by Andrew Ng.' },
+            { name: 'Deep Learning Specialization by Coursera (deeplearning.ai)', link: 'https://www.coursera.org/specializations/deep-learning', rate: '4.8', description: 'Specialization in deep learning by Andrew Ng.' },
+            { name: 'Applied Data Science with Python by Coursera (University of Michigan)', link: 'https://www.coursera.org/specializations/data-science-python', rate: '4.5', description: 'Learn data science with Python in this applied specialization.' },
+            { name: 'The Complete iOS App Development Bootcamp by Udemy', link: 'https://www.udemy.com/course/ios13-app-development-bootcamp/', rate: '4.8', description: 'Master iOS app development with this complete bootcamp.' },
+            { name: 'Android App Development for Beginners by Udacity', link: 'https://www.udacity.com/course/android-basics-nanodegree-by-google--nd803', rate: '4.6', description: 'Beginner course on Android app development by Google.' },
+            { name: 'iOS 13 & Swift 5 - The Complete iOS App Development Bootcamp by Udemy', link: 'https://www.udemy.com/course/ios-13-app-development-bootcamp/', rate: '4.8', description: 'Learn iOS app development with Swift 5 and iOS 13.' },
+            { name: 'Kotlin for Android Development by Udacity', link: 'https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012', rate: '4.7', description: 'Learn Kotlin for Android development with this course.' },
+            { name: 'Full Stack Web Developer by Udacity', link: 'https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd0044', rate: '4.6', description: 'Become a full-stack web developer with this nanodegree program.' }
         ];
-
+    
+        function createCourseTile(course) {
+            const tile = document.createElement('div');
+            tile.className = 'course-tile';
+            tile.innerHTML = `
+                <h3>${course.name}</h3>
+                <p>Rating: ${course.rate}</p>
+                <p>${course.description}</p>
+                <a href="${course.link}" target="_blank">Go to Course</a>
+            `;
+            return tile;
+        }
+    
         searchButton.addEventListener('click', () => {
-            const query = searchInput.value.toLowerCase();
-            const results = recommendations.filter(course => course.name.toLowerCase().includes(query));
-            
-            displayResults(results);
-        });
-
-        function displayResults(results) {
-            const searchWindow = document.querySelector('.search-window');
-            let resultsContainer = document.querySelector('.results-container');
-
-            if (!resultsContainer) {
-                resultsContainer = document.createElement('div');
-                resultsContainer.classList.add('results-container');
-                searchWindow.appendChild(resultsContainer);
+            const searchTerm = searchInput.value.toLowerCase();
+            const resultsContainer = document.querySelector('.results-container');
+            resultsContainer.innerHTML = '';
+            const filteredRecommendations = recommendations.filter(course =>
+                course.name.toLowerCase().includes(searchTerm)
+            );
+    
+            if (filteredRecommendations.length === 0) {
+                resultsContainer.innerHTML = '<p>No results found.</p>';
             } else {
-                resultsContainer.innerHTML = '';
-            }
-
-            if (results.length === 0) {
-                resultsContainer.textContent = 'No recommendations found.';
-            } else {
-                results.forEach(course => {
-                    const courseTile = document.createElement('div');
-                    courseTile.classList.add('course-tile');
-                    
-                    const courseTitle = document.createElement('h3');
-                    courseTitle.textContent = course.name;
-
-                    const courseLink = document.createElement('a');
-                    courseLink.href = course.link;
-                    courseLink.textContent = 'View Course';
-                    courseLink.target = '_blank';
-
-                    const courseRate = document.createElement('p');
-                    courseRate.textContent = `Rating: ${course.rate}`;
-
-                    courseTile.appendChild(courseTitle);
-                    courseTile.appendChild(courseLink);
-                    courseTile.appendChild(courseRate);
+                filteredRecommendations.forEach(course => {
+                    const courseTile = createCourseTile(course);
                     resultsContainer.appendChild(courseTile);
                 });
             }
-        }
+        });
+    
+        document.querySelector('.submit-feedback').addEventListener('click', () => {
+            const feedback = document.getElementById('feedback').value;
+            if (feedback) {
+                alert('Thank you for your feedback!');
+                document.getElementById('feedback').value = '';
+            } else {
+                alert('Please enter your feedback before submitting.');
+            }
+        });
     });
+
 </script>
 
 </body>

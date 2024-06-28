@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        Welcome to the Recommendation System
+    </header>
+
+    <main>
+        <section class="user-profile">
+            <div class="profile-info">
+                <img src="{{ url_for('static', filename='user-avatar.png') }}" alt="User Avatar">
+                <div class="user-details">
+                    <p>Name: TESTER</p>
+                    <p>Email: tester123@example.com</p>
+                    <p>Location: Unknown</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-window">
+            <div class="search-container">
+                <label for="search" class="search-label">Search:</label>
+                <input type="text" id="search" class="search-input">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="results-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchButton = document.querySelector('.search-button');
+            const searchInput = document.querySelector('.search-input');
+
+            searchButton.addEventListener('click', () => {
+                const query = searchInput.value;
+                fetch('/recommend', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ course: query }),
+                })
+                .then(response => response.json())
+                .then(data => displayResults(data));
+            });
+
+            function displayResults(results) {
+                const resultsContainer = document.querySelector('.results-container');
+                resultsContainer.innerHTML = '';
+
+                if (results.length === 0) {
+                    resultsContainer.textContent = 'No recommendations found.';
+                } else {
+                    results.forEach(course => {
+                        const courseTile = document.createElement('div');
+                        courseTile.classList.add('course-tile');
+
+                        const courseTitle = document.createElement('h3');
+                        courseTitle.textContent = course;
+
+                        courseTile.appendChild(courseTitle);
+                        resultsContainer.appendChild(courseTile);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
